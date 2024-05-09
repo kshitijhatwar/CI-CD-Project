@@ -5,7 +5,7 @@ pipeline {
 
         stage("git login"){
             steps{
-                git branch: 'main', url: 'https://github.com/kshitijhatwar/docker-jenkins.git'
+                git branch: 'main', url: 'https://github.com/kshitijhatwar/dem.git'
             }
         }
         stage("docker Build"){
@@ -28,14 +28,14 @@ pipeline {
         stage("Docker Container Deployment"){
             steps{
                 script{
-                    def docker_run = 'docker run -p 9008:80 --name docker-demo kshitijhatwar/dockerbuildjob:latest'
+                    def docker_run = 'docker run -p 8080:8080 --name docker-demo kshitijhatwar/dockerbuildjob:latest'
                     def docker_rmv_container = 'docker rm -f docker-demo'
                     def docker_rmi = 'docker rmi -f kshitijhatwar/dockerbuildjob'
 
                     sshagent(['sshKey']){
-                        sh "ssh -o StrictHostKeyChecking=no ubuntu@13.201.18.4 ${docker_rmv_container}"
-                        sh "ssh -o StrictHostKeyChecking=no ubuntu@13.201.18.4 ${docker_rmi}"
-                        sh "ssh -o StrictHostKeyChecking=no ubuntu@13.201.18.4 ${docker_run}"
+                        sh "ssh -o StrictHostKeyChecking=no ubuntu@3.7.252.253 ${docker_rmv_container}"
+                        sh "ssh -o StrictHostKeyChecking=no ubuntu@3.7.252.253 ${docker_rmi}"
+                        sh "ssh -o StrictHostKeyChecking=no ubuntu@3.7.252.253 ${docker_run}"
                     }
                 }
             }
