@@ -5,12 +5,11 @@ WORKDIR /usr/local/tomcat
 
 RUN apt-get update && \
     apt-get install -y wget && \
-    wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.55/bin/apache-tomcat-9.0.55.tar.gz && \
-    tar -xzf apache-tomcat-9.0.55.tar.gz && \
-    rm apache-tomcat-9.0.55.tar.gz && \
-    mv apache-tomcat-9.0.55/* . && \
-    rmdir apache-tomcat-9.0.55
-
+    wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.20/bin/apache-tomcat-10.0.20.tar.gz && \
+    tar -xzf apache-tomcat-10.0.20.tar.gz && \
+    rm apache-tomcat-10.0.20.tar.gz && \
+    mv apache-tomcat-10.0.20/* . && \
+    rmdir apache-tomcat-10.0.20
 COPY app.war /usr/local/tomact/webapp
 
 
