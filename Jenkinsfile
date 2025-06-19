@@ -22,6 +22,24 @@ pipeline{
             steps {
                 sh 'mvn -s settings.xml install'
             }
+            post {
+                success {
+                    echo "ok"
+                    archiveArtifacts artifacts: '**/*.war'
+                }
+            }
+        }
+
+        stage('MVN Test') {
+            steps {
+                sh 'mvn -s settings.xml test'
+            }
+        }
+
+        stage('anala') {
+            steps{
+                sh 'mvn -s settings checkstyle:checkstyle'
+            }
         }
     }
 
