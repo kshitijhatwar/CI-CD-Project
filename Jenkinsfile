@@ -38,7 +38,7 @@ pipeline{
 
         stage('anala') {
             steps{
-                sh 'mvn -s settings checkstyle:checkstyle'
+                sh 'mvn -s settings.xml checkstyle:checkstyle'
             }
         }
     }
