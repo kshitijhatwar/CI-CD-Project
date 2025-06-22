@@ -71,7 +71,7 @@ pipeline{
                 nexusArtifactUploader(
                 nexusVersion: NEXUS_VERSION,
                 protocol: NEXUS_PROTOCOL,
-                nexusUrl: NEXUS_URL,
+                nexusUrl: NEXUSIP,
                 groupId: NEXUS_GRP_REPO,
                 version: "${env.BUILD_ID}",
                 repository: RELEASE_REPO,
