@@ -17,7 +17,6 @@ pipeline{
         NEXUS_LOGIN = 'nexuslogin'
         NEXUS_VERSION = 'nexus3'
         NEXUS_PROTOCOL = 'http'
-        ARTVERSION = 
         SONARSERVER = 'sonarserver'
         SONARSCANNER = 'sonarscanner'
     }
