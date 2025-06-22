@@ -13,7 +13,7 @@ pipeline{
         CENTRAL_REPO = 'vpro-maven-central'
         NEXUSIP = '13.221.241.248:8081'
         NEXUSPORT = '8081'
-        NEXUS_GRP_REPO = 'vpro-maven-group'
+        NEXUS_GRP_REPO = 'com.visualpathit.vprofile'
         NEXUS_LOGIN = 'nexuslogin'
         NEXUS_VERSION = 'nexus3'
         NEXUS_PROTOCOL = 'http'
@@ -73,7 +73,7 @@ pipeline{
                 protocol: NEXUS_PROTOCOL,
                 nexusUrl: NEXUSIP,
                 groupId: NEXUS_GRP_REPO,
-                version: "${env.BUILD_ID}",
+                version: "${BUILD_NUMBER}",
                 repository: RELEASE_REPO,
                 credentialsId: NEXUS_LOGIN,
                 artifacts: [
