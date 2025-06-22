@@ -15,6 +15,9 @@ pipeline{
         NEXUSPORT = '8081'
         NEXUS_GRP_REPO = 'vpro-maven-group'
         NEXUS_LOGIN = 'nexuslogin'
+        NEXUS_VERSION = 'nexus3'
+        NEXUS_PROTOCOL = 'http'
+        ARTVERSION = 
         SONARSERVER = 'sonarserver'
         SONARSCANNER = 'sonarscanner'
     }
@@ -61,6 +64,28 @@ pipeline{
                     -Dsonar.jacoco.reportsPath=target/jacoco.exec \
                     -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
                 }
+            }
+        }
+
+        stage('upload artifact') {
+            steps{
+                nexusArtifactUploader(
+                nexusVersion: NEXUS_VERSION,
+                protocol: NEXUS_PROTOCOL,
+                nexusUrl: NEXUS_URL,
+                groupId: NEXUS_GRP_REPO,
+                version: "${env.BUILD_ID}",
+                repository: RELEASE_REPO,
+                credentialsId: NEXUS_LOGIN,
+                artifacts: [
+                    [artifactId: pom.artifactId,
+                    classifier: '',
+                    file: "target/vprofile-v2.war",
+                    type: "war"]
+                            ]
+                            )
+                    
+		    
             }
         }
     }
